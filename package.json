@@ -1,0 +1,10 @@
+{
+    "name": "generate-svg",
+    "description": "Generates a snake svg game from a github user contributions grid",
+    "version": "1.0.0",
+    "private": true,
+    "repository": "github:14kk/generate-svg",
+    "devDependencies": {
+      "@types/node": "16.11.7"
+    }
+  }
