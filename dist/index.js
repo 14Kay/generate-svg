@@ -558,7 +558,7 @@ class OidcClient {
                 .catch(error => {
                 throw new Error(`Failed to get ID Token. \n 
         Error Code : ${error.statusCode}\n 
-        Error Message: ${error.result.message}`);
+        Error Message: ${error.message}`);
             });
             const id_token = (_a = res.result) === null || _a === void 0 ? void 0 : _a.value;
             if (!id_token) {
@@ -2784,14 +2784,6 @@ module.exports = require("path");
 
 /***/ }),
 
-/***/ 5477:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("punycode");
-
-/***/ }),
-
 /***/ 2781:
 /***/ ((module) => {
 
@@ -2808,27 +2800,11 @@ module.exports = require("tls");
 
 /***/ }),
 
-/***/ 7310:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("url");
-
-/***/ }),
-
 /***/ 3837:
 /***/ ((module) => {
 
 "use strict";
 module.exports = require("util");
-
-/***/ }),
-
-/***/ 9796:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("zlib");
 
 /***/ })
 
@@ -3098,8 +3074,11 @@ const parseEntry = (entry) => {
             core.getInput("gif_out_path"),
             core.getInput("svg_out_path"),
         ]);
-        const { generateContributionSnake } = await Promise.all(/* import() */[__nccwpck_require__.e(197), __nccwpck_require__.e(317)]).then(__nccwpck_require__.bind(__nccwpck_require__, 5317));
-        const results = await generateContributionSnake(userName, outputs);
+        const githubToken = process.env.GITHUB_TOKEN ?? core.getInput("github_token");
+        const { generateContributionSnake } = await __nccwpck_require__.e(/* import() */ 407).then(__nccwpck_require__.bind(__nccwpck_require__, 407));
+        const results = await generateContributionSnake(userName, outputs, {
+            githubToken,
+        });
         outputs.forEach((out, i) => {
             const result = results[i];
             if (out?.filename && result) {
