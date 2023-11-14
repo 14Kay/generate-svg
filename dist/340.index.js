@@ -253,18 +253,17 @@ const createLivingCells = (grid0, chain, cells) => {
     return livingCells;
 };
 const createSvg = (grid, cells, chain, drawOptions, animationOptions) => {
-    const width = (grid.width + 2) * drawOptions.sizeCell;
-    const height = (grid.height + 5) * drawOptions.sizeCell;
+    const width = grid.width * drawOptions.sizeCell;
+    const height = grid.height * drawOptions.sizeCell;
     const duration = animationOptions.frameDuration * chain.length;
     const livingCells = createLivingCells(grid, chain, cells);
     const elements = [
         createGrid(livingCells, drawOptions, duration),
-        createStack(livingCells, drawOptions, grid.width * drawOptions.sizeCell, (grid.height + 2) * drawOptions.sizeCell, duration),
-        createSnake(chain, drawOptions, duration),
+        createSnake(chain, drawOptions, duration)
     ];
     const viewBox = [
-        -drawOptions.sizeCell,
-        -drawOptions.sizeCell * 2,
+        0,
+        0,
         width,
         height,
     ].join(" ");
